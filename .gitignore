@@ -7,7 +7,7 @@ node_modules/
 .pnp.js
 
 # Build output
-# dist/        # 注释掉以纳入版本控制（如需 CI/CD 部署可再恢复）
+dist/
 dist-ssr/
 *.local
 
