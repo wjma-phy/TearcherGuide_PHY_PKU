@@ -59,13 +59,9 @@ export function ContentArea({ activeSection, onSectionChange }: ContentAreaProps
           <div className="relative max-w-5xl mx-auto px-4 md:px-8 py-10 md:py-16">
             <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-10">
               <div className="max-w-2xl">
-                <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/10 border border-white/20 backdrop-blur-sm text-sm font-medium text-red-100 mb-5">
-                  <Sparkles className="w-3.5 h-3.5" />
-                  北京大学物理学院 · 教职工服务门户
-                </div>
                 <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight mb-4 md:mb-5 leading-tight">
                   物理学院<br />
-                  <span className="text-red-100/90">教职工Wiki系统</span>
+                  <span className="text-red-100/90">教职工办事指南</span>
                 </h1>
                 <p className="text-base md:text-lg lg:text-xl text-red-50/90 max-w-xl leading-relaxed font-light">
                   从办事者视角出发，整合学院各项业务流程与规章制度，快速找到您需要办理的事务
