@@ -25,7 +25,6 @@ export interface WikiSection {
   contacts?: ContactRef[];
   notes?: string[];
   policies?: PolicyLink[];
-  isPlaceholder?: boolean;
 }
 
 export interface WikiCategory {
@@ -253,7 +252,6 @@ export const wikiData: WikiCategory[] = [
           { name: "宣梦雨", office: "人事办公室", phone: "62758139", email: "myxuan@pku.edu.cn" },
           { name: "张志科", office: "资产与安全管理办公室", phone: "62751123", email: "zhangzhike@pku.edu.cn" }
         ],
-        isPlaceholder: true
       }
     ]
   },
@@ -377,7 +375,6 @@ export const wikiData: WikiCategory[] = [
           "研究生导师招生资格实行年度审核制度",
           "招生名额与导师培养质量、科研成果与经费等相关"
         ],
-        isPlaceholder: true
       },
       {
         id: "doctoral-supervisor",
@@ -392,7 +389,6 @@ export const wikiData: WikiCategory[] = [
         notes: [
           "具体申请条件及时间安排以当年通知为准"
         ],
-        isPlaceholder: true
       }
     ]
   },
@@ -514,7 +510,6 @@ export const wikiData: WikiCategory[] = [
           { title: "北京大学大型仪器设备管理办法", url: "http://www.lab.pku.edu.cn/info/1131/32931.htm" },
           { title: "北京大学物理学院大型仪器设备管理实施细则", url: "http://portal.phy.pku.edu.cn/content.jsp?urltype=news.NewsContentUrl&wbtreeid=1319&wbnewsid=3564" }
         ],
-        isPlaceholder: true
       }
     ]
   },
@@ -582,7 +577,6 @@ export const wikiData: WikiCategory[] = [
         contacts: [
           { name: "宣梦雨", office: "人事办公室", phone: "62758139", email: "myxuan@pku.edu.cn" }
         ],
-        isPlaceholder: true
       },
       {
         id: "tenure-evaluation",
@@ -601,7 +595,6 @@ export const wikiData: WikiCategory[] = [
         contacts: [
           { name: "宣梦雨", office: "人事办公室", phone: "62758139", email: "myxuan@pku.edu.cn" }
         ],
-        isPlaceholder: true
       },
       {
         id: "attendance",
@@ -650,7 +643,6 @@ export const wikiData: WikiCategory[] = [
         contacts: [
           { name: "焦振威", office: "人事办公室", phone: "62766282", email: "jzw@pku.edu.cn" }
         ],
-        isPlaceholder: true
       }
     ]
   },
@@ -754,7 +746,6 @@ export const wikiData: WikiCategory[] = [
           "报销时限一般为费用发生后3个月内",
           "大额报销需提前进行大额审批"
         ],
-        isPlaceholder: true
       },
       {
         id: "large-amount",
@@ -861,7 +852,6 @@ export const wikiData: WikiCategory[] = [
         links: [
           { text: "校内门户", url: "https://portal.pku.edu.cn/portal2017/#/index" }
         ],
-        isPlaceholder: true
       }
     ]
   },
@@ -1537,12 +1527,12 @@ export const faqData: FAQItem[] = [
 
 // 热门问题数据
 export const hotTopics = [
-  { id: "finance-reimbursement", title: "我要报销", icon: "Wallet", isHot: true },
-  { id: "communication-abroad-short", title: "申请出国", icon: "Globe", isHot: true },
-  { id: "admin-meeting-room", title: "预约会议室", icon: "Building", isHot: true },
-  { id: "research-nsfc-project", title: "申请项目", icon: "FlaskConical", isHot: false },
-  { id: "onboarding-party-relation", title: "党费缴纳", icon: "Users", isHot: false },
-  { id: "hr-academic-leave", title: "申请学术假", icon: "BookOpen", isHot: true },
+  { id: "finance-reimbursement", title: "我要报销", icon: "Wallet" },
+  { id: "communication-abroad-short", title: "申请出国", icon: "Globe" },
+  { id: "admin-meeting-room", title: "预约会议室", icon: "Building" },
+  { id: "research-nsfc-project", title: "申请项目", icon: "FlaskConical" },
+  { id: "onboarding-party-relation", title: "党费缴纳", icon: "Users" },
+  { id: "hr-academic-leave", title: "申请学术假", icon: "BookOpen" },
 ];
 
 // 快速链接数据 - 只保留3个

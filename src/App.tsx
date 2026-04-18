@@ -4,32 +4,38 @@ import { Sidebar } from '@/components/Sidebar';
 import { ContentArea } from '@/components/ContentArea';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { cn } from '@/lib/utils';
+import { recordClick } from '@/lib/tracker';
 
 function App() {
   const [activeSection, setActiveSection] = useState('home');
   const [mobileSidebarOpen, setMobileSidebarOpen] = useState(false);
 
   const handleSectionChange = (sectionId: string) => {
+    recordClick(sectionId);
     setActiveSection(sectionId);
     setMobileSidebarOpen(false);
   };
 
   const handleFAQClick = () => {
+    recordClick('faq');
     setActiveSection('faq');
     setMobileSidebarOpen(false);
   };
 
   const handleHomeClick = () => {
+    recordClick('home');
     setActiveSection('home');
     setMobileSidebarOpen(false);
   };
 
   const handleRegulationsClick = () => {
+    recordClick('regulations');
     setActiveSection('regulations');
     setMobileSidebarOpen(false);
   };
 
   const handleContactClick = () => {
+    recordClick('contact');
     setActiveSection('contact');
     setMobileSidebarOpen(false);
   };

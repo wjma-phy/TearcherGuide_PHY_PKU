@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { ExternalLink, Download, Phone, Mail, MapPin, AlertCircle, CheckCircle2, ArrowRight, ChevronDown, ChevronUp, User, BookOpen, HelpCircle, Flame, Construction, FileText, Sparkles, LayoutGrid, GraduationCap, Building2, Briefcase, Heart, Plane, Wallet, Shield, Cpu } from 'lucide-react';
+import { ExternalLink, Download, Phone, Mail, MapPin, AlertCircle, CheckCircle2, ArrowRight, ChevronDown, ChevronUp, User, BookOpen, HelpCircle, Flame, FileText, Sparkles, LayoutGrid, GraduationCap, Building2, Briefcase, Heart, Plane, Wallet, Shield, Cpu } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Alert, AlertDescription } from '@/components/ui/alert';
@@ -7,6 +7,7 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
 import { SearchBox } from '@/components/SearchBox';
 import { wikiData, faqData, contactData, hotTopics, regulationsData, findContact } from '@/data/wikiData';
+import { isHot, getHeatLevel } from '@/lib/tracker';
 import { cn } from '@/lib/utils';
 
 interface ContentAreaProps {
@@ -118,9 +119,9 @@ export function ContentArea({ activeSection, onSectionChange }: ContentAreaProps
                   onClick={() => handleLinkClick(topic.id)}
                   className="group relative flex flex-col items-center gap-3 p-5 bg-[hsl(40,15%,98.5%)] rounded-2xl border border-stone-100 shadow-[0_2px_8px_rgba(0,0,0,0.04)] hover:shadow-[0_8px_24px_rgba(148,7,10,0.12)] hover:border-red-200 transition-all duration-300 hover:-translate-y-1"
                 >
-                  {topic.isHot && (
+                  {isHot(topic.id) && (
                     <span className="absolute -top-2 -right-1 px-2 py-0.5 bg-gradient-to-r from-orange-500 to-red-500 text-white text-[10px] font-bold rounded-full shadow-md">
-                      热门
+                      {getHeatLevel(topic.id) >= 3 ? '超热' : '热门'}
                     </span>
                   )}
                   <div className="w-12 h-12 bg-gradient-to-br from-[#94070A] to-[#D10D12] rounded-xl flex items-center justify-center shadow-lg shadow-red-500/25 group-hover:scale-110 group-hover:shadow-red-500/40 transition-all duration-300">
@@ -220,9 +221,6 @@ export function ContentArea({ activeSection, onSectionChange }: ContentAreaProps
                               >
                                 <span className="flex items-center gap-2 font-medium">
                                   {section.title}
-                                  {section.isPlaceholder && (
-                                    <span className="px-1.5 py-0.5 bg-amber-50 text-amber-600 text-sm rounded border border-amber-100">待补充</span>
-                                  )}
                                 </span>
                                 <ArrowRight className="w-4 h-4 text-slate-300 group-hover/item:text-[#94070A] group-hover/item:translate-x-1 transition-all" />
                               </button>
@@ -464,27 +462,14 @@ export function ContentArea({ activeSection, onSectionChange }: ContentAreaProps
         <div className="mb-8">
           <div className="flex items-center gap-3 mb-3">
             <h1 className="text-2xl md:text-3xl font-bold text-slate-900">{section.title}</h1>
-            {section.isPlaceholder && (
-              <Badge className="bg-amber-50 text-amber-600 hover:bg-amber-50 border border-amber-100 font-medium">
-                <Construction className="w-3 h-3 mr-1" />
-                待补充
-              </Badge>
-            )}
+
           </div>
           {section.description && (
             <p className="text-slate-600 text-lg leading-relaxed">{section.description}</p>
           )}
         </div>
 
-        {/* Placeholder Notice */}
-        {section.isPlaceholder && (
-          <Alert className="mb-8 bg-amber-50/60 border-amber-200/60 rounded-2xl">
-            <Construction className="w-5 h-5 text-amber-600" />
-            <AlertDescription className="text-amber-800 font-medium">
-              该办事指南内容正在完善中，如需了解详细信息，请联系相关办公室咨询。
-            </AlertDescription>
-          </Alert>
-        )}
+
 
         {/* Steps - Timeline 风格 */}
         {section.steps && section.steps.length > 0 && (
