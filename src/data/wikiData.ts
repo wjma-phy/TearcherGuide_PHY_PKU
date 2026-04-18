@@ -1531,8 +1531,8 @@ export const hotTopics = [
   { id: "communication-abroad-short", title: "申请出国", icon: "Globe" },
   { id: "admin-meeting-room", title: "预约会议室", icon: "Building" },
   { id: "research-nsfc-project", title: "申请项目", icon: "FlaskConical" },
-  { id: "onboarding-party-relation", title: "党费缴纳", icon: "Users" },
-  { id: "hr-academic-leave", title: "申请学术假", icon: "BookOpen" },
+  { id: "postdoc-postdoc-enrollment", title: "博士后进站", icon: "UserCog" },
+  { id: "finance-large-amount", title: "大额资金使用审批", icon: "FileText" },
 ];
 
 // 快速链接数据 - 只保留3个
