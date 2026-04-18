@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { ChevronDown, ChevronRight, BookOpen, FlaskConical, Users, GraduationCap, Wallet, Building, Heart, UserCog, Globe, HelpCircle, Shield, UserPlus, ExternalLink, Home, FileText, Phone, Sparkles, LayoutGrid, Briefcase, Plane, Building2, Cpu, X } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { wikiData, quickLinks } from '@/data/wikiData';
-import { getHeatLevel } from '@/lib/tracker';
+import { isHot } from '@/lib/tracker';
 import { SearchBox } from '@/components/SearchBox';
 
 interface SidebarProps {
@@ -204,16 +204,9 @@ export function Sidebar({
                           )}
                         >
                           <span className="truncate">{section.title}</span>
-                          {getHeatLevel(`${category.id}-${section.id}`) > 0 && (
-                            <span className={cn(
-                              "shrink-0 text-[10px] px-1.5 py-0.5 rounded-full font-bold ml-1",
-                              getHeatLevel(`${category.id}-${section.id}`) >= 3
-                                ? "bg-red-100 text-red-600"
-                                : getHeatLevel(`${category.id}-${section.id}`) >= 2
-                                  ? "bg-orange-100 text-orange-600"
-                                  : "bg-amber-100 text-amber-600"
-                            )}>
-                              {getHeatLevel(`${category.id}-${section.id}`) >= 3 ? '超热' : getHeatLevel(`${category.id}-${section.id}`) >= 2 ? '热' : '温'}
+                          {isHot(`${category.id}-${section.id}`) && (
+                            <span className="shrink-0 text-[10px] px-1.5 py-0.5 rounded-full font-bold ml-1 bg-red-100 text-red-600">
+                              热门
                             </span>
                           )}
                         </button>

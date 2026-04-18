@@ -7,7 +7,7 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
 import { SearchBox } from '@/components/SearchBox';
 import { wikiData, faqData, contactData, hotTopics, regulationsData, findContact } from '@/data/wikiData';
-import { isHot, getHeatLevel } from '@/lib/tracker';
+import { isHot } from '@/lib/tracker';
 import { cn } from '@/lib/utils';
 
 interface ContentAreaProps {
@@ -121,7 +121,7 @@ export function ContentArea({ activeSection, onSectionChange }: ContentAreaProps
                 >
                   {isHot(topic.id) && (
                     <span className="absolute -top-2 -right-1 px-2 py-0.5 bg-gradient-to-r from-orange-500 to-red-500 text-white text-[10px] font-bold rounded-full shadow-md">
-                      {getHeatLevel(topic.id) >= 3 ? '超热' : '热门'}
+                      热门
                     </span>
                   )}
                   <div className="w-12 h-12 bg-gradient-to-br from-[#94070A] to-[#D10D12] rounded-xl flex items-center justify-center shadow-lg shadow-red-500/25 group-hover:scale-110 group-hover:shadow-red-500/40 transition-all duration-300">
