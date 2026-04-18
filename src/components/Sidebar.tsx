@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { ChevronDown, ChevronRight, BookOpen, FlaskConical, Users, GraduationCap, Wallet, Building, Heart, UserCog, Globe, HelpCircle, Shield, UserPlus, ExternalLink, Home, FileText, Phone, Sparkles, LayoutGrid, Briefcase, Plane, Building2, Cpu, X } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { wikiData, quickLinks } from '@/data/wikiData';
+import { SearchBox } from '@/components/SearchBox';
 
 interface SidebarProps {
   activeSection: string;
@@ -91,6 +92,11 @@ export function Sidebar({
             <X className="w-5 h-5" />
           </button>
         )}
+      </div>
+
+      {/* Search */}
+      <div className="p-3 border-b border-red-100 shrink-0 bg-gradient-to-br from-[#94070A] to-[#7A0608]">
+        <SearchBox onResultClick={onSectionChange} variant="light" />
       </div>
 
       {/* Quick Actions */}

@@ -6,6 +6,7 @@ import { cn } from '@/lib/utils';
 
 interface SearchBoxProps {
   onResultClick: (sectionId: string) => void;
+  variant?: 'dark' | 'light';
 }
 
 interface SearchResult {
@@ -16,7 +17,7 @@ interface SearchResult {
   preview: string;
 }
 
-export function SearchBox({ onResultClick }: SearchBoxProps) {
+export function SearchBox({ onResultClick, variant = 'light' }: SearchBoxProps) {
   const [query, setQuery] = useState('');
   const [isOpen, setIsOpen] = useState(false);
 
@@ -71,7 +72,12 @@ export function SearchBox({ onResultClick }: SearchBoxProps) {
   return (
     <div className="relative">
       <div className="relative group">
-        <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-red-200 group-focus-within:text-[#94070A] transition-colors" />
+        <Search className={cn(
+          "absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 transition-colors",
+          variant === 'dark'
+            ? "text-red-200 group-focus-within:text-[#94070A]"
+            : "text-stone-400 group-focus-within:text-[#94070A]"
+        )} />
         <Input
           type="text"
           placeholder="搜索办事指南、常见问题..."
@@ -81,7 +87,12 @@ export function SearchBox({ onResultClick }: SearchBoxProps) {
             setIsOpen(true);
           }}
           onFocus={() => setIsOpen(true)}
-          className="pl-10 pr-10 w-40 sm:w-56 md:w-80 h-10 rounded-full border-white/20 bg-white/10 text-white placeholder:text-red-100/70 focus:bg-white focus:text-slate-800 focus:placeholder:text-slate-400 focus:border-[#C9A227] focus:ring-2 focus:ring-[#C9A227]/40 transition-all text-sm"
+          className={cn(
+            "pl-10 pr-10 h-10 rounded-full transition-all text-sm",
+            variant === 'dark'
+              ? "w-40 sm:w-56 md:w-80 border-white/20 bg-white/10 text-white placeholder:text-red-100/70 focus:bg-white focus:text-slate-800 focus:placeholder:text-slate-400 focus:border-[#C9A227] focus:ring-2 focus:ring-[#C9A227]/40"
+              : "w-full border-stone-200 bg-white text-slate-800 placeholder:text-stone-400 focus:border-[#94070A] focus:ring-2 focus:ring-[#94070A]/20 shadow-sm"
+          )}
         />
         {query && (
           <button
@@ -91,7 +102,12 @@ export function SearchBox({ onResultClick }: SearchBoxProps) {
             }}
             className="absolute right-3 top-1/2 -translate-y-1/2"
           >
-            <X className="w-4 h-4 text-red-100 hover:text-white transition-colors" />
+            <X className={cn(
+              "w-4 h-4 transition-colors",
+              variant === 'dark'
+                ? "text-red-100 hover:text-white"
+                : "text-stone-400 hover:text-stone-600"
+            )} />
           </button>
         )}
       </div>
@@ -102,7 +118,12 @@ export function SearchBox({ onResultClick }: SearchBoxProps) {
             className="fixed inset-0 z-40"
             onClick={() => setIsOpen(false)}
           />
-          <div className="absolute top-full right-0 mt-2 w-[calc(100vw-2rem)] sm:w-96 max-w-sm bg-[hsl(40,15%,98.5%)] rounded-xl shadow-card-hover border border-stone-100 z-50 max-h-96 overflow-auto animate-fade-in">
+          <div className={cn(
+            "absolute top-full mt-2 rounded-xl shadow-card-hover border border-stone-100 z-50 max-h-96 overflow-auto animate-fade-in bg-[hsl(40,15%,98.5%)]",
+            variant === 'dark'
+              ? "right-0 w-[calc(100vw-2rem)] sm:w-96 max-w-sm"
+              : "left-0 w-full"
+          )}>
             {results.length > 0 ? (
               <div className="py-2">
                 <div className="px-4 py-2 text-xs font-semibold text-slate-400 uppercase tracking-wider flex items-center gap-2">
