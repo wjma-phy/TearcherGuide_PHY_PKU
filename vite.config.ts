@@ -5,7 +5,7 @@ import { inspectAttr } from 'kimi-plugin-inspect-react'
 
 // https://vite.dev/config/
 export default defineConfig({
-  base: './',
+  base: '/TearcherGuide_PHY_PKU/',
   plugins: [inspectAttr(), react()],
   resolve: {
     alias: {
