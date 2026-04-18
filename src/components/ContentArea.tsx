@@ -1,11 +1,11 @@
 import { useState } from 'react';
-import { ExternalLink, Download, Phone, Mail, MapPin, AlertCircle, CheckCircle2, ArrowRight, ChevronDown, ChevronUp, User, BookOpen, Search, HelpCircle, Flame, Construction, FileText, Sparkles, LayoutGrid, GraduationCap, Building2, Briefcase, Heart, Plane, Wallet, Shield, Cpu } from 'lucide-react';
+import { ExternalLink, Download, Phone, Mail, MapPin, AlertCircle, CheckCircle2, ArrowRight, ChevronDown, ChevronUp, User, BookOpen, HelpCircle, Flame, Construction, FileText, Sparkles, LayoutGrid, GraduationCap, Building2, Briefcase, Heart, Plane, Wallet, Shield, Cpu } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Alert, AlertDescription } from '@/components/ui/alert';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
-import { Input } from '@/components/ui/input';
+import { SearchBox } from '@/components/SearchBox';
 import { wikiData, faqData, contactData, hotTopics, regulationsData, findContact } from '@/data/wikiData';
 import { cn } from '@/lib/utils';
 
@@ -31,7 +31,7 @@ const categoryConfig: Record<string, { icon: React.ElementType; gradient: string
 export function ContentArea({ activeSection, onSectionChange }: ContentAreaProps) {
   const [expandedPolicies, setExpandedPolicies] = useState<Record<string, boolean>>({});
   const [expandedCategory, setExpandedCategory] = useState<string | null>(null);
-  const [searchQuery, setSearchQuery] = useState('');
+
 
   const togglePolicy = (sectionId: string) => {
     setExpandedPolicies(prev => ({ ...prev, [sectionId]: !prev[sectionId] }));
@@ -97,23 +97,7 @@ export function ContentArea({ activeSection, onSectionChange }: ContentAreaProps
           {/* Search Box - 悬浮卡片 */}
           <div className="relative z-10 -mt-6 md:-mt-8 mb-10 md:mb-12">
             <div className="max-w-2xl mx-auto">
-              <div className="relative group">
-                <div className="absolute inset-y-0 left-5 flex items-center pointer-events-none">
-                  <Search className="w-5 h-5 text-stone-400 group-focus-within:text-[#94070A] transition-colors" />
-                </div>
-                <Input
-                  type="text"
-                  placeholder="搜索办事指南、规章制度、常见问题..."
-                  className="pl-14 pr-5 py-4 h-14 md:h-16 text-sm md:text-base rounded-2xl border-0 bg-[hsl(40,15%,98.5%)] shadow-[0_8px_30px_rgb(148,7,10,0.08)] hover:shadow-[0_12px_40px_rgb(148,7,10,0.12)] transition-all focus-visible:ring-2 focus-visible:ring-[#94070A]/20"
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                />
-                <div className="absolute inset-y-0 right-3 flex items-center">
-                  <kbd className="hidden sm:inline-flex items-center gap-1 px-2 py-1 rounded-lg bg-stone-100 text-stone-500 text-xs border border-stone-200">
-                    ⌘ K
-                  </kbd>
-                </div>
-              </div>
+              <SearchBox onResultClick={handleLinkClick} variant="light" />
             </div>
           </div>
 
