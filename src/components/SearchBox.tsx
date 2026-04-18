@@ -69,15 +69,33 @@ export function SearchBox({ onResultClick, variant = 'light' }: SearchBoxProps) 
     setIsOpen(false);
   };
 
+  const handleConfirm = () => {
+    if (results.length > 0) {
+      handleResultClick(results[0]);
+    }
+  };
+
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter') {
+      handleConfirm();
+    }
+  };
+
   return (
     <div className="relative">
       <div className="relative group">
-        <Search className={cn(
-          "absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 transition-colors",
-          variant === 'dark'
-            ? "text-red-200 group-focus-within:text-[#94070A]"
-            : "text-stone-400 group-focus-within:text-[#94070A]"
-        )} />
+        <button
+          onClick={handleConfirm}
+          className="absolute left-3 top-1/2 -translate-y-1/2 p-0.5 rounded-md hover:bg-stone-100/20 transition-colors"
+          aria-label="搜索"
+        >
+          <Search className={cn(
+            "w-4 h-4 transition-colors",
+            variant === 'dark'
+              ? "text-red-200 group-focus-within:text-[#94070A]"
+              : "text-stone-400 group-focus-within:text-[#94070A]"
+          )} />
+        </button>
         <Input
           type="text"
           placeholder="搜索办事指南、常见问题..."
@@ -87,6 +105,7 @@ export function SearchBox({ onResultClick, variant = 'light' }: SearchBoxProps) 
             setIsOpen(true);
           }}
           onFocus={() => setIsOpen(true)}
+          onKeyDown={handleKeyDown}
           className={cn(
             "pl-10 pr-10 h-10 rounded-full transition-all text-sm",
             variant === 'dark'
