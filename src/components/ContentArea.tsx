@@ -410,6 +410,60 @@ export function ContentArea({ activeSection, onSectionChange }: ContentAreaProps
     );
   }
 
+  // 渲染分类概览页（点击面包屑二级目录时）
+  const overviewCategory = wikiData.find(c => c.id === activeSection);
+  if (overviewCategory) {
+    const cfg = categoryConfig[overviewCategory.id];
+    const Icon = cfg?.icon || LayoutGrid;
+    return (
+      <div className="min-h-full bg-[hsl(40,20%,97%)] p-4 md:p-6 lg:p-8 animate-fade-in">
+        <div className="max-w-4xl mx-auto">
+          {/* Breadcrumb */}
+          <nav className="flex flex-wrap items-center gap-2 text-sm text-slate-500 mb-6">
+            <button onClick={() => handleLinkClick('home')} className="hover:text-[#94070A] transition-colors font-medium">首页</button>
+            <span className="text-slate-300">/</span>
+            <span className="text-slate-900 font-bold">{overviewCategory.title}</span>
+          </nav>
+
+          {/* Title */}
+          <div className="mb-8">
+            <div className="flex items-center gap-3 mb-3">
+              <div className={cn("w-12 h-12 rounded-xl bg-gradient-to-br flex items-center justify-center shadow-md", cfg?.gradient || 'from-slate-400 to-gray-500')}>
+                <Icon className="w-6 h-6 text-white" />
+              </div>
+              <h1 className="text-2xl md:text-3xl font-bold text-slate-900">{overviewCategory.title}</h1>
+            </div>
+            {overviewCategory.description && (
+              <p className="text-slate-600 text-lg leading-relaxed">{overviewCategory.description}</p>
+            )}
+          </div>
+
+          {/* Section Cards */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {overviewCategory.sections.map((section) => (
+              <button
+                key={section.id}
+                onClick={() => handleLinkClick(`${overviewCategory.id}-${section.id}`)}
+                className="text-left p-5 bg-[hsl(40,15%,98.5%)] rounded-2xl border border-stone-100 shadow-[0_2px_8px_rgba(0,0,0,0.03)] hover:shadow-[0_6px_20px_rgba(148,7,10,0.08)] hover:border-red-100 transition-all group"
+              >
+                <h3 className="text-base font-bold text-slate-800 group-hover:text-[#94070A] transition-colors mb-2">
+                  {section.title}
+                </h3>
+                {section.description && (
+                  <p className="text-sm text-slate-500 line-clamp-2">{section.description}</p>
+                )}
+                <div className="mt-3 flex items-center gap-1 text-sm text-[#94070A] font-semibold opacity-0 group-hover:opacity-100 transition-opacity">
+                  <span>查看详情</span>
+                  <ArrowRight className="w-4 h-4" />
+                </div>
+              </button>
+            ))}
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   // 渲染具体办事指南
   const dashIndex = activeSection.indexOf('-');
   if (dashIndex === -1) {
